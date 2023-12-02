@@ -6,8 +6,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__, static_folder='src', static_url_path='/')
 
 # Replace 'YOUR_DEFAULT_API_KEY' with the name of the environment variable
-DEFAULT_API_KEY = os.environ.get('YOUR_DEFAULT_API_KEY', 'YOUR_DEFAULT_API_KEY')
-
+#DEFAULT_API_KEY = os.environ.get('YOUR_DEFAULT_API_KEY', 'YOUR_DEFAULT_API_KEY')
+DEFAULT_API_KEY = "";
 
 @app.route('/')
 def index():
@@ -19,9 +19,9 @@ def index():
 def process_image():
     data = request.json
     base64_image = data.get('image', '')
+    api_key = data.get('key', DEFAULT_API_KEY)
 
     if base64_image:
-        api_key = DEFAULT_API_KEY
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {api_key}"
@@ -50,7 +50,7 @@ def process_image():
         }
 
         response = requests.post(
-            "https://api.openai.com/v1/chat/completions",
+            "https://flag.smarttrot.com/v1/chat/completions",
             headers=headers,
             json=payload
         )
@@ -64,4 +64,6 @@ def process_image():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True, port=51668,
+            ssl_context=('/usr/local/nginx/cert/app.zhizengzeng.com.pem',
+                         '/usr/local/nginx/cert/app.zhizengzeng.com.key'))

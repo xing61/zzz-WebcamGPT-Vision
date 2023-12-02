@@ -11,7 +11,12 @@
         <div id="webcam-container">
             <video id="webcam" autoplay playsinline width="640" height="480"></video>
             <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
-            <button id="capture">Capture</button>
+			<div class="inputTXT">第一步：设置智增增key，<a href="http://gpt.zhizengzeng.com/" target="_blank">点击获取</a>
+				<input id="inputKey" placeholder="请输入智增增key" type="text"/>
+				<button id="saveKey">保存key</button>
+			</div>
+			
+            <button id="capture">第二步：Capture截屏并上传gpt-4-vision-preview识别</button>
             <button id="switch-camera">Switch Camera</button>
         </div>
 
@@ -25,8 +30,7 @@
     <script src="webcam.js"></script>
 
     <div id="footer">
-        Webcam is local on your browser, and <b>no images or keys are saved</b> by this demo.<br>
-        Dev'd by <a href="https://twitter.com/BenjaminDEKR">Benjamin De Kraker (Follow on X)</a>
+        Powered by 智增增
     </div>
 </body>
 </html>

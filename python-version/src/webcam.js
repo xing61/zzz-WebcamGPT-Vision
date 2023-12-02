@@ -25,13 +25,15 @@ function captureImage() {
 // Send the image to the server for processing
 function processImage(base64Image) {
     toggleLoader(true); // Show the loader
-
     fetch('process_image', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ image: base64Image })
+        body: JSON.stringify({ 
+			image: base64Image ,
+			key: localStorage.getItem('key')
+		})
     })
     .then(response => response.json())
     .then(handleResponse)
@@ -44,6 +46,11 @@ function handleResponse(data) {
     if(data.error) {
         console.error(data.error);
         appendToChatbox(`Error: ${data.error}`, true);
+        return;
+    }
+    if(data.code!=0) {
+        console.error(data.msg);
+        appendToChatbox(`Error: ${data.msg}`, true);
         return;
     }
     appendToChatbox(data.choices[0].message.content);
@@ -107,6 +114,11 @@ function switchCamera() {
     };
 }
 
+function saveKey() {
+	localStorage.setItem('key', document.getElementById('inputKey').value);
+    appendToChatbox(`Success: 智增增key设置成功`, true);
+}
+
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
     initializeWebcam();
@@ -115,4 +127,5 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('switch-camera').addEventListener('click', switchCamera());
 
     // Other event listeners here...
+	document.getElementById('saveKey').addEventListener('click', saveKey);
 });
