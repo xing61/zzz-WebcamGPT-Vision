@@ -1,6 +1,6 @@
 修改成简单两步：<br>
 第1步：用手机号登录智增增，获取复制出key，地址：http://gpt.zhizengzeng.com/#/login <br>
-第2步：打开[体验](https://app.zhizengzeng.com:51668/)，将上一步复制的key填入，即可正常使用。 <br>
+第2步：打开：https://app.zhizengzeng.com:51668/，将上一步复制的key填入，即可正常使用。 <br>
 ![image](https://github.com/xing61/zzz-WebcamGPT-Vision/assets/38256442/a96fa31c-908d-4a48-ab31-e46705a0f4b1)
 
 # WebcamGPT-Vision
